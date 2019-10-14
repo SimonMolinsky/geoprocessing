@@ -1,3 +1,8 @@
+import numpy as np
+import rasterio as rio
+import affine
+
+
 class ImageForClipModel:
     """Class for clipping big raster images into smaller parts. Class initialized with image address.
     Class has only one method with two modes of work:
@@ -80,7 +85,7 @@ class ImageForClipModel:
                                   width=image[4], count=1, dtype=image[5],
                                   crs=image[1], transform=image[2]) as dst:
                         dst.write(image[0], 1)
-                    clipped_addresses.append(filename)
+                    self.clipped_addresses.append(filename)
                 else:
                     self.clipped_images.append(clipped_image)
 
