@@ -14,9 +14,9 @@ def read_images(folder_name, file_end):
     return channel_list
 
 
-def show_band(band, color_map='Set1', title=None):
+def show_band(band, nan_val=0, color_map='Set1', title=None):
     band = band.astype(np.float)
-    band[band == 0] = np.nan
+    band[band == nan_val] = np.nan
     plt.figure(figsize=(11, 11))
     image_layer = plt.imshow(band)
     image_layer.set_cmap(color_map)
@@ -31,4 +31,4 @@ if __name__ == '__main__':
     for img in images:
         with rio.open(img) as src:
             image = src.read(1)
-            show_band(image, color_map='Set1', title=img)
+            show_band(image, nan_val=0, color_map='Set1', title=img)
