@@ -23,12 +23,15 @@ def show_band(band, nan_val=0, color_map='Set1', title=None):
     plt.colorbar()
     if title is not None:
         plt.title(title)
+    plt.axis('off')
     plt.show()
 
 
 if __name__ == '__main__':
-    images = read_images('ffi_output/', '.tiff')
+    folder_address = './'
+    file_ending = '.tif'
+    images = read_images(folder_address, file_ending)
     for img in images:
         with rio.open(img) as src:
             image = src.read(1)
-            show_band(image, nan_val=0, color_map='Set1', title=img)
+            show_band(image, nan_val=0, color_map='Accent', title=img)
